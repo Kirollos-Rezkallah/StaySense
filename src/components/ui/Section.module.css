@@ -1,0 +1,28 @@
+.section {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.header {
+  max-width: 42rem;
+}
+
+.header h2 {
+  margin: 0.35rem 0 0.75rem;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  letter-spacing: -0.04em;
+}
+
+.header p {
+  margin: 0;
+  color: var(--color-text-soft);
+}
+
+.eyebrow {
+  display: inline-flex;
+  color: var(--color-accent-soft);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+}
