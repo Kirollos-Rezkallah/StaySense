@@ -1,0 +1,26 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.default {
+  color: var(--color-text-soft);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.accent {
+  color: #06111f;
+  background: linear-gradient(135deg, #97edff, #50c7ff);
+}
+
+.success {
+  color: #d5ffe9;
+  background: rgba(32, 201, 151, 0.18);
+}
