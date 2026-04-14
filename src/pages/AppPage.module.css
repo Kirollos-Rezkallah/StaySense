@@ -18,7 +18,11 @@
   display: grid;
   gap: 1rem;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(249, 246, 241, 0.95)),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.94),
+      rgba(249, 246, 241, 0.95)
+    ),
     var(--color-surface);
 }
 
@@ -81,6 +85,7 @@
   margin: 0;
   font-size: 1.22rem;
   letter-spacing: -0.04em;
+  margin-bottom: 0.8rem;
 }
 
 .stack p {

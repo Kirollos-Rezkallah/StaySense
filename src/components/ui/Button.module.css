@@ -8,6 +8,7 @@
   border: 1px solid transparent;
   font-weight: 700;
   line-height: 1;
+  white-space: nowrap;
   transition:
     transform var(--transition-base),
     box-shadow var(--transition-base),

@@ -1,0 +1,72 @@
+.toolbarCard {
+  padding: 1.35rem;
+}
+
+.toolbarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.toolbarHeader h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  letter-spacing: -0.04em;
+}
+
+.toolbarHeader p {
+  margin: 0.35rem 0 0;
+  color: var(--color-text-soft);
+}
+
+.filterGrid {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.resultsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.resultMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.resultMeta p {
+  margin: 0;
+  color: var(--color-text-soft);
+}
+
+.emptyCard {
+  padding: 2rem;
+  display: grid;
+  gap: 0.9rem;
+  text-align: left;
+}
+
+.emptyCard h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  letter-spacing: -0.04em;
+}
+
+.emptyCard p {
+  margin: 0;
+  color: var(--color-text-soft);
+}
+
+@media (max-width: 1080px) {
+  .filterGrid,
+  .resultsGrid {
+    grid-template-columns: 1fr;
+  }
+}
