@@ -42,7 +42,7 @@ function Navbar() {
           </span>
           <span>
             StaySense
-            <small>Travel intelligence for better stays</small>
+            <small>Find the stay that fits</small>
           </span>
         </Link>
 
@@ -65,7 +65,7 @@ function Navbar() {
             </Button>
           ) : (
             <Button to="/dashboard" size="sm">
-              Open App
+              Get started
             </Button>
           )}
           <button
@@ -99,7 +99,7 @@ function Navbar() {
               </Button>
             ) : (
               <Button to="/dashboard" fullWidth>
-                Open App
+                Get started
               </Button>
             )}
           </div>
