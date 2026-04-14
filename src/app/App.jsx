@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import ScrollToTop from './ScrollToTop';
 import MainLayout from '../components/layout/MainLayout';
 import ProtectedRoute from '../routes/ProtectedRoute';
 import AIAssistantPage from '../pages/AIAssistantPage';
@@ -15,6 +16,7 @@ import WriteReviewPage from '../pages/WriteReviewPage';
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route element={<MainLayout />}>
           <Route path="/" element={<LandingPage />} />

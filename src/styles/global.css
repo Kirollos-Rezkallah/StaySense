@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
 
 :root {
   --color-bg: #f6f4ef;
@@ -45,13 +45,36 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  font-family: 'Manrope', sans-serif;
+  min-height: 100vh;
+  font-family: "Manrope", sans-serif;
   color: var(--color-text);
-  background:
-    radial-gradient(circle at top left, rgba(106, 168, 156, 0.14), transparent 28%),
-    radial-gradient(circle at right top, rgba(47, 103, 216, 0.08), transparent 24%),
-    linear-gradient(180deg, #fcfbf8 0%, #f6f4ef 46%, #f2f5f8 100%);
+  background: color-mix(in srgb, #fcfbf8 70%, #f2f5f8 30%);
   line-height: 1.55;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(106, 168, 156, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at right top,
+      rgba(47, 103, 216, 0.08),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(215, 160, 104, 0.06),
+      transparent 30%
+    );
 }
 
 a {
@@ -85,6 +108,7 @@ p {
 
 #root {
   min-height: 100vh;
+  position: relative;
 }
 
 .container {

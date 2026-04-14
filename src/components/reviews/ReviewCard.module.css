@@ -1,0 +1,64 @@
+.card {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.15rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-muted);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.userName {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.hotelName,
+.date,
+.copy {
+  margin: 0;
+  color: var(--color-text-soft);
+}
+
+.hotelName {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.ratingBox {
+  text-align: right;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--color-primary);
+  font-weight: 800;
+}
+
+.date {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.84rem;
+}
+
+.copy {
+  line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .ratingBox {
+    text-align: left;
+  }
+}
