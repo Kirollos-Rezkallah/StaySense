@@ -58,6 +58,9 @@
 
 .navLink,
 .mobileLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   color: var(--color-text-soft);
   font-weight: 600;
   transition:
@@ -77,10 +80,102 @@
   background: var(--color-primary-soft);
 }
 
+.assistantLink {
+  color: var(--color-assistant);
+  background: linear-gradient(180deg, rgba(111, 99, 217, 0.1), rgba(111, 99, 217, 0.06));
+}
+
+.assistantLink:hover,
+.assistantLink.active {
+  color: var(--color-assistant);
+  background: var(--color-assistant-soft);
+}
+
 .actions {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+}
+
+.profileMenuWrap {
+  position: relative;
+}
+
+.profileTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.4rem 0.55rem 0.4rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+.profileAvatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(111, 99, 217, 0.16), rgba(111, 99, 217, 0.1));
+  color: var(--color-assistant);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.profileText {
+  display: grid;
+  text-align: left;
+}
+
+.profileText strong {
+  color: var(--color-text);
+  font-size: 0.94rem;
+  letter-spacing: -0.02em;
+}
+
+.profileText small {
+  color: var(--color-text-soft);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.profileDropdown {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  width: min(280px, calc(100vw - 2rem));
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.55rem;
+  border-radius: 1.2rem;
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: var(--shadow-md);
+}
+
+.dropdownLink,
+.dropdownButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.9rem 0.95rem;
+  border: 0;
+  border-radius: 0.95rem;
+  background: transparent;
+  color: var(--color-text);
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdownLink:hover,
+.dropdownButton:hover {
+  background: var(--color-surface-muted);
 }
 
 .menuButton {
@@ -113,6 +208,12 @@
   background: var(--color-surface);
 }
 
+.mobileAssistant {
+  color: var(--color-assistant);
+  background: linear-gradient(180deg, rgba(111, 99, 217, 0.1), rgba(111, 99, 217, 0.06));
+  border-color: rgba(111, 99, 217, 0.18);
+}
+
 .mobileActive {
   color: var(--color-primary);
   border-color: rgba(47, 103, 216, 0.18);
@@ -136,7 +237,11 @@
     display: none;
   }
 
-  .actions :global(a) {
+  .actions > :global(a) {
+    display: none;
+  }
+
+  .profileText {
     display: none;
   }
 }

@@ -16,6 +16,7 @@ import styles from './AppPage.module.css';
 function RecommendationsPage() {
   const { latestRecommendations, preferences } = usePreferences();
   const hasAssistantPreferences = isPreferenceProfileActive(preferences);
+  const hasAssistantBrief = hasAssistantPreferences || Boolean(preferences.unsupportedDestination);
   const recommendationSource =
     latestRecommendations.length && hasAssistantPreferences
       ? latestRecommendations
@@ -44,17 +45,19 @@ function RecommendationsPage() {
       <Card className={styles.heroCard} elevated>
         <Badge tone="accent">Personalized picks</Badge>
         <h1 className={styles.heroTitle}>
-          {hasAssistantPreferences
+          {preferences.unsupportedDestination
+            ? `Best available alternatives for ${preferences.unsupportedDestination}.`
+            : hasAssistantPreferences
             ? 'Recommendations shaped by your latest travel brief.'
             : 'Recommendations tuned for premium comfort and fit.'}
         </h1>
         <p className={styles.heroText}>
-          {hasAssistantPreferences
+          {hasAssistantBrief
             ? preferences.summary
             : 'These stays align most strongly with your preference for quieter rooms, refined design, and smooth city access.'}
         </p>
 
-        {hasAssistantPreferences ? (
+        {hasAssistantBrief ? (
           <div className={styles.chips}>
             {preferences.positive.map((preferenceKey) => (
               <Badge key={preferenceKey}>{getPreferenceLabel(preferenceKey)}</Badge>
@@ -64,6 +67,9 @@ function RecommendationsPage() {
                 {city}
               </Badge>
             ))}
+            {preferences.unsupportedDestination ? (
+              <Badge tone="accent">{preferences.unsupportedDestination}</Badge>
+            ) : null}
           </div>
         ) : null}
       </Card>

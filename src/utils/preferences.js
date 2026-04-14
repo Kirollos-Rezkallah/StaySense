@@ -136,6 +136,8 @@ export function getDefaultPreferences() {
     negative: [],
     priorities: [],
     cities: [],
+    destinationQuery: '',
+    unsupportedDestination: '',
     lastMessage: '',
     summary: 'No travel preferences saved yet.',
     confidence: 'vague',
@@ -162,6 +164,7 @@ export function extractPreferencesFromMessage(message, availableCities = []) {
   const positive = [];
   const negative = [];
   const priorities = [];
+  const destinationQuery = detectDestinationQuery(message, availableCities);
 
   if (RESET_CUES.some((cue) => normalizedMessage.includes(cue))) {
     return {
@@ -190,6 +193,9 @@ export function extractPreferencesFromMessage(message, availableCities = []) {
   });
 
   const cities = availableCities.filter((city) => containsPhrase(normalizedMessage, city));
+  const resolvedCities = destinationQuery
+    ? availableCities.filter((city) => normalizeText(city) === normalizeText(destinationQuery))
+    : cities;
   const uniquePositive = uniqueItems(positive.filter((key) => !negative.includes(key)));
   const uniqueNegative = uniqueItems(negative.filter((key) => !uniquePositive.includes(key)));
   const uniquePriorities = uniqueItems(priorities.filter((key) => uniquePositive.includes(key)));
@@ -198,7 +204,10 @@ export function extractPreferencesFromMessage(message, availableCities = []) {
     positive: uniquePositive,
     negative: uniqueNegative,
     priorities: uniquePriorities,
-    cities,
+    cities: resolvedCities,
+    destinationQuery,
+    unsupportedDestination:
+      destinationQuery && !resolvedCities.length ? formatDestinationLabel(destinationQuery) : '',
     lastMessage: message.trim(),
     updatedAt: new Date().toISOString(),
   };
@@ -232,6 +241,10 @@ export function mergePreferenceProfiles(currentPreferences, extractedPreferences
   const nextCities = extractedPreferences.cities.length
     ? uniqueItems(extractedPreferences.cities)
     : basePreferences.cities;
+  const nextDestinationQuery = extractedPreferences.destinationQuery || basePreferences.destinationQuery;
+  const nextUnsupportedDestination = extractedPreferences.destinationQuery
+    ? extractedPreferences.unsupportedDestination
+    : basePreferences.unsupportedDestination;
 
   const mergedPreferences = {
     positive: nextPositive.filter((key) => !nextNegative.includes(key)),
@@ -241,6 +254,8 @@ export function mergePreferenceProfiles(currentPreferences, extractedPreferences
       ...extractedPreferences.priorities,
     ]).filter((key) => nextPositive.includes(key)),
     cities: nextCities,
+    destinationQuery: nextDestinationQuery,
+    unsupportedDestination: nextUnsupportedDestination,
     lastMessage: extractedPreferences.lastMessage || basePreferences.lastMessage,
     updatedAt: extractedPreferences.updatedAt || basePreferences.updatedAt,
   };
@@ -257,7 +272,12 @@ export function buildPreferenceSummary(preferences) {
   const negativeLabels = preferences.negative?.map(getPreferenceLabel) || [];
   const cityLabels = preferences.cities || [];
 
-  if (!positiveLabels.length && !negativeLabels.length && !cityLabels.length) {
+  if (
+    !positiveLabels.length &&
+    !negativeLabels.length &&
+    !cityLabels.length &&
+    !preferences.unsupportedDestination
+  ) {
     return 'No travel preferences saved yet.';
   }
 
@@ -275,24 +295,30 @@ export function buildPreferenceSummary(preferences) {
     parts.push(`Focused on ${listToSentence(cityLabels)}.`);
   }
 
+  if (preferences.unsupportedDestination) {
+    parts.push(
+      `Requested destination: ${preferences.unsupportedDestination}, which is not in the current collection yet.`,
+    );
+  }
+
   return parts.join(' ');
 }
 
 export function rankHotelsByPreferences(hotels, preferences, limit = 4) {
   const hasSignals = isPreferenceProfileActive(preferences);
-  const rankedHotels = hotels
+  const destinationScopedHotels = preferences.cities?.length
+    ? hotels.filter((hotel) => preferences.cities.includes(hotel.city))
+    : hotels;
+  const rankingPool = destinationScopedHotels.length ? destinationScopedHotels : hotels;
+  const rankedHotels = rankingPool
     .map((hotel) => {
       const matchedPreferences = [];
       const blockedPreferences = [];
       let score =
         hotel.reviewScore * 6 + hotel.starRating * 2 + Math.min(hotel.reviewCount / 120, 5);
 
-      if (preferences.cities?.length) {
-        if (preferences.cities.includes(hotel.city)) {
-          score += 26;
-        } else {
-          score -= 9;
-        }
+      if (preferences.cities?.length && preferences.cities.includes(hotel.city)) {
+        score += 40;
       }
 
       preferences.positive?.forEach((key) => {
@@ -337,6 +363,10 @@ export function rankHotelsByPreferences(hotels, preferences, limit = 4) {
 
 export function buildAssistantReply(preferences, recommendations) {
   if (!isPreferenceProfileActive(preferences)) {
+    if (preferences.unsupportedDestination) {
+      return `I do not have hotels in ${preferences.unsupportedDestination} yet. Share what matters most for the stay, such as quiet rooms, breakfast, wellness, or budget, and I will surface the closest fit from the current collection.`;
+    }
+
     return [
       'I can narrow this down much better once I have two or three signals to work with.',
       'Tell me what matters most, like quiet rooms, breakfast, budget, wellness, or a preferred city, and I will sharpen the shortlist right away.',
@@ -359,6 +389,12 @@ export function buildAssistantReply(preferences, recommendations) {
 
   if (preferences.cities.length) {
     lines.push(`I'll keep the focus on ${listToSentence(preferences.cities)}.`);
+  }
+
+  if (preferences.unsupportedDestination) {
+    lines.push(
+      `I do not have hotels in ${preferences.unsupportedDestination} yet, so I'm leaning on your stay preferences to find the closest fit from the current collection.`,
+    );
   }
 
   if (recommendations.length) {
@@ -491,4 +527,63 @@ function listToSentence(items) {
   }
 
   return `${items.slice(0, -1).join(', ')}, and ${items.at(-1)}`;
+}
+
+function detectDestinationQuery(message, availableCities) {
+  const normalizedMessage = normalizeText(message);
+  const matchedCity = availableCities.find((city) => containsPhrase(normalizedMessage, city));
+
+  if (matchedCity) {
+    return matchedCity;
+  }
+
+  const destinationPatterns = [
+    /\b(?:in|near|around|for)\s+([a-z]+(?:\s+[a-z]+){0,2})/i,
+    /\b(?:trip to|staying in|visit to)\s+([a-z]+(?:\s+[a-z]+){0,2})/i,
+  ];
+
+  for (const pattern of destinationPatterns) {
+    const match = message.match(pattern);
+
+    if (!match) {
+      continue;
+    }
+
+    const candidate = normalizeText(match[1]);
+
+    if (!candidate || isGenericDestinationPhrase(candidate)) {
+      continue;
+    }
+
+    return candidate;
+  }
+
+  return '';
+}
+
+function isGenericDestinationPhrase(candidate) {
+  const ignoredPhrases = new Set([
+    'the city',
+    'city center',
+    'city centre',
+    'the city center',
+    'the city centre',
+    'town',
+    'the center',
+    'the centre',
+    'downtown',
+    'a hotel',
+    'the hotel',
+    'my trip',
+  ]);
+
+  return ignoredPhrases.has(candidate);
+}
+
+function formatDestinationLabel(value) {
+  return value
+    .split(' ')
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
 }

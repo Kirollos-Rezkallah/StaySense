@@ -3,6 +3,10 @@
   gap: 0.55rem;
 }
 
+.control {
+  position: relative;
+}
+
 .label {
   font-weight: 700;
   font-size: 0.96rem;
@@ -29,6 +33,10 @@
     background var(--transition-base);
 }
 
+.withAdornment {
+  padding-right: 3.7rem;
+}
+
 .input:hover {
   border-color: rgba(47, 103, 216, 0.18);
 }
@@ -37,6 +45,26 @@
   border-color: rgba(47, 103, 216, 0.45);
   box-shadow: 0 0 0 3px rgba(47, 103, 216, 0.08);
   background: var(--color-surface);
+}
+
+.inputError {
+  border-color: rgba(176, 90, 63, 0.45);
+  box-shadow: 0 0 0 3px rgba(176, 90, 63, 0.08);
+}
+
+.adornment {
+  position: absolute;
+  top: 50%;
+  right: 0.8rem;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+}
+
+.error {
+  color: #b05a3f;
+  font-size: 0.88rem;
+  font-weight: 600;
 }
 
 textarea.input {

@@ -57,14 +57,19 @@
   gap: 1rem;
 }
 
+.helperText,
+.redirect,
+.note {
+  color: var(--color-text-soft);
+}
+
 .formHeader h2 {
   margin: 0 0 0.45rem;
   font-size: 1.7rem;
   letter-spacing: -0.05em;
 }
 
-.formHeader p,
-.redirect {
+.formHeader p {
   color: var(--color-text-soft);
 }
 
@@ -75,6 +80,37 @@
 .redirect a {
   color: var(--color-primary);
   font-weight: 700;
+}
+
+.formError {
+  margin: 0;
+  padding: 0.95rem 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(176, 90, 63, 0.08);
+  color: #b05a3f;
+  font-weight: 600;
+}
+
+.passwordToggle {
+  border: 0;
+  background: transparent;
+  color: var(--color-primary);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.passwordToggle:hover {
+  color: var(--color-primary-strong);
+}
+
+.submitRow {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.note {
+  margin: 0;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 960px) {
