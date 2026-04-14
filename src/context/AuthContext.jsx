@@ -4,6 +4,10 @@ const AUTH_STORAGE_KEY = 'staysense.auth';
 
 export const AuthContext = createContext(null);
 
+function getStableUserId(email) {
+  return `usr-${email.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+}
+
 function getStoredUser() {
   if (typeof window === 'undefined') {
     return null;
@@ -36,7 +40,7 @@ export function AuthProvider({ children }) {
   const login = ({ email }) => {
     const username = email.split('@')[0].replace(/[._-]/g, ' ');
     const user = {
-      id: `usr-${Date.now()}`,
+      id: getStableUserId(email),
       name: username.replace(/\b\w/g, (letter) => letter.toUpperCase()) || 'Traveler',
       email,
       membership: 'StaySense Plus',
@@ -51,7 +55,7 @@ export function AuthProvider({ children }) {
 
   const register = ({ fullName, email }) => {
     const user = {
-      id: `usr-${Date.now()}`,
+      id: getStableUserId(email),
       name: fullName,
       email,
       membership: 'StaySense Access',

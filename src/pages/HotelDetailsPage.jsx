@@ -1,20 +1,27 @@
 import { useEffect, useState } from 'react';
-import { HiOutlineStar } from 'react-icons/hi2';
-import { HiChevronLeft, HiChevronRight, HiOutlineXMark } from 'react-icons/hi2';
+import { HiChevronLeft, HiChevronRight, HiOutlineStar, HiOutlineXMark } from 'react-icons/hi2';
 import { LuMapPin, LuShieldCheck } from 'react-icons/lu';
 import { useParams } from 'react-router-dom';
 import { getHotelById } from '../data/hotels';
+import ReviewCard from '../components/reviews/ReviewCard';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
+import useReviews from '../hooks/useReviews';
 import appStyles from './AppPage.module.css';
 import styles from './HotelDetailsPage.module.css';
 
 function HotelDetailsPage() {
   const { hotelId } = useParams();
   const hotel = getHotelById(hotelId);
+  const { getHotelReviewAggregate, getReviewsForHotel } = useReviews();
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  const hotelReviews = hotel ? getReviewsForHotel(hotel.id) : [];
+  const reviewAggregate = hotel
+    ? getHotelReviewAggregate(hotel.id, hotel.reviewScore, hotel.reviewCount)
+    : { averageScore: 0, totalCount: 0, localReviewCount: 0 };
 
   useEffect(() => {
     if (!isGalleryOpen) {
@@ -57,7 +64,9 @@ function HotelDetailsPage() {
   };
 
   const showPreviousImage = () => {
-    setActiveImageIndex((currentIndex) => (currentIndex - 1 + hotel.gallery.length) % hotel.gallery.length);
+    setActiveImageIndex((currentIndex) =>
+      (currentIndex - 1 + hotel.gallery.length) % hotel.gallery.length,
+    );
   };
 
   if (!hotel) {
@@ -78,11 +87,7 @@ function HotelDetailsPage() {
       <div className={styles.layout}>
         <div className={styles.hero}>
           <Card className={styles.galleryCard} elevated>
-            <button
-              type="button"
-              className={styles.imageButton}
-              onClick={() => openGallery(0)}
-            >
+            <button type="button" className={styles.imageButton} onClick={() => openGallery(0)}>
               <img className={styles.heroImage} src={hotel.gallery[0]} alt={hotel.name} />
               <span className={styles.imageHint}>Open gallery</span>
             </button>
@@ -121,12 +126,12 @@ function HotelDetailsPage() {
                 <span>Typical nightly starting rate</span>
               </div>
               <div className={styles.statItem}>
-                <strong>{hotel.reviewScore.toFixed(1)}</strong>
+                <strong>{reviewAggregate.averageScore.toFixed(1)}</strong>
                 <span>Guest review score</span>
               </div>
               <div className={styles.statItem}>
-                <strong>{hotel.reviewCount}</strong>
-                <span>Reviews in the collection</span>
+                <strong>{reviewAggregate.totalCount}</strong>
+                <span>Total reviews considered</span>
               </div>
             </div>
 
@@ -136,7 +141,10 @@ function HotelDetailsPage() {
 
             <div className={styles.ctaRow}>
               <Button to="/recommendations">Compare with recommendations</Button>
-              <Button to="/reviews/new" variant="secondary">
+              <Button
+                to={`/reviews/new?hotelId=${hotel.id}&returnTo=/hotels/${hotel.id}`}
+                variant="secondary"
+              >
                 Write a review
               </Button>
             </div>
@@ -170,12 +178,15 @@ function HotelDetailsPage() {
             <div className={styles.reviewBox}>
               <div className={styles.reviewTop}>
                 <div className={styles.reviewScore}>
-                  <span className={styles.scoreNumber}>{hotel.reviewScore.toFixed(1)}</span>
+                  <span className={styles.scoreNumber}>{reviewAggregate.averageScore.toFixed(1)}</span>
                   <div className={styles.reviewMeta}>
                     <strong>
                       <HiOutlineStar /> Highly rated by guests
                     </strong>
-                    <span>{hotel.reviewCount} reviews in the local catalog</span>
+                    <span>
+                      {reviewAggregate.totalCount} total reviews - {reviewAggregate.localReviewCount}{' '}
+                      added in StaySense
+                    </span>
                   </div>
                 </div>
               </div>
@@ -203,6 +214,36 @@ function HotelDetailsPage() {
             </div>
           </Card>
         </div>
+
+        <Card className={styles.sectionCard}>
+          <div className={styles.sectionHeader}>
+            <div>
+              <h2>Guest reviews</h2>
+              <p className={styles.sectionIntro}>
+                Traveler feedback saved in StaySense appears here as soon as it is submitted.
+              </p>
+            </div>
+            <Button
+              to={`/reviews/new?hotelId=${hotel.id}&returnTo=/hotels/${hotel.id}`}
+              variant="secondary"
+            >
+              Add your review
+            </Button>
+          </div>
+
+          {hotelReviews.length ? (
+            <div className={appStyles.reviewList}>
+              {hotelReviews.map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+            </div>
+          ) : (
+            <p className={appStyles.emptyState}>
+              No traveler reviews have been added here yet. Be the first to share what this stay
+              was really like.
+            </p>
+          )}
+        </Card>
       </div>
 
       {isGalleryOpen && (

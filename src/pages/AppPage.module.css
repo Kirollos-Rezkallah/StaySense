@@ -178,6 +178,35 @@
   gap: 1rem;
 }
 
+.infoCard {
+  padding: 1.1rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-muted);
+}
+
+.infoCard strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.reviewList {
+  display: grid;
+  gap: 1rem;
+}
+
+.emptyState {
+  margin: 0;
+  color: var(--color-text-soft);
+}
+
+.errorMessage {
+  margin: 0;
+  color: #b05a3f;
+  font-weight: 600;
+}
+
 .divider {
   height: 1px;
   background: var(--color-border);
