@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { HiChevronLeft, HiChevronRight, HiOutlineStar, HiOutlineXMark } from 'react-icons/hi2';
 import { LuMapPin, LuShieldCheck } from 'react-icons/lu';
 import { useParams } from 'react-router-dom';
+import { getPriceLevelLabel } from '../data/hotelSeedUtils';
 import { getHotelById } from '../data/hotels';
 import ReviewCard from '../components/reviews/ReviewCard';
 import Badge from '../components/ui/Badge';
@@ -116,7 +117,7 @@ function HotelDetailsPage() {
               <Badge tone="accent">
                 {hotel.city}, {hotel.country}
               </Badge>
-              <Badge>{hotel.priceLevel} price level</Badge>
+              <Badge>{getPriceLevelLabel(hotel.priceLevel)}</Badge>
               <Badge>{hotel.starRating}-star stay</Badge>
             </div>
 
@@ -157,7 +158,10 @@ function HotelDetailsPage() {
             <p>{hotel.description}</p>
             <ul className={styles.list}>
               <li>{hotel.locationDescription}</li>
-              <li>{hotel.starRating}-star hospitality standard with {hotel.priceLevel} positioning.</li>
+              <li>
+                {hotel.starRating}-star hospitality standard in the{' '}
+                {getPriceLevelLabel(hotel.priceLevel).toLowerCase()} tier.
+              </li>
               <li>Best suited to travelers looking for {hotel.tags.join(', ').toLowerCase()}.</li>
             </ul>
           </Card>

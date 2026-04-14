@@ -127,6 +127,136 @@
   gap: 1rem;
 }
 
+.recommendationGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.recommendationCard {
+  display: grid;
+  overflow: hidden;
+  padding: 0;
+  grid-template-rows: auto 1fr;
+}
+
+.recommendationImageLink {
+  display: block;
+  cursor: pointer;
+}
+
+.recommendationImageWrap {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-surface-muted);
+}
+
+.recommendationImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 220ms ease;
+}
+
+.recommendationImageLink:hover .recommendationImage,
+.recommendationImageLink:focus-visible .recommendationImage {
+  transform: scale(1.03);
+}
+
+.recommendationImageOverlay {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: rgba(29, 39, 53, 0.72);
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--transition-base),
+    transform var(--transition-base);
+  pointer-events: none;
+}
+
+.recommendationImageLink:hover .recommendationImageOverlay,
+.recommendationImageLink:focus-visible .recommendationImageOverlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.recommendationImageMeta {
+  position: absolute;
+  inset: auto 1rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.recommendationPrice {
+  padding: 0.55rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-text);
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.recommendationContent {
+  display: grid;
+  gap: 1.05rem;
+  padding: 1.35rem 1.35rem 1.45rem;
+}
+
+.recommendationTitle {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.15;
+}
+
+.recommendationTitleLink {
+  transition: color var(--transition-base);
+}
+
+.recommendationTitleLink:hover,
+.recommendationTitleLink:focus-visible {
+  color: var(--color-primary);
+}
+
+.recommendationMatchBox {
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-muted);
+}
+
+.recommendationMatchBox strong {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+}
+
+.recommendationMatchBox p {
+  margin: 0;
+  color: var(--color-text-soft);
+}
+
+.recommendationPriceMeta {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.recommendationPriceLabel {
+  color: var(--color-text);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
 .compact {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -213,6 +343,7 @@
 }
 
 @media (max-width: 1080px) {
+  .recommendationGrid,
   .gridThree,
   .statGrid,
   .compact,
@@ -234,5 +365,17 @@
   .gridTwo,
   .statGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .recommendationImageMeta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .recommendationImageOverlay {
+    opacity: 1;
+    transform: none;
   }
 }

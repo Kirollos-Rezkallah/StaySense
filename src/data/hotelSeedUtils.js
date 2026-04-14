@@ -38,6 +38,13 @@ const priceLevelOrder = {
   $$$$: 4,
 };
 
+const priceLevelLabels = {
+  $: 'Budget',
+  $$: 'Moderate',
+  $$$: 'Premium',
+  $$$$: 'Luxury',
+};
+
 export function hotelImage(imageId) {
   return `https://images.unsplash.com/${imageId}?auto=format&fit=crop&w=1200&q=80`;
 }
@@ -60,6 +67,10 @@ export function buildHotel(seed) {
 
 export function getPriceLevelRank(priceLevel) {
   return priceLevelOrder[priceLevel] || 0;
+}
+
+export function getPriceLevelLabel(priceLevel) {
+  return priceLevelLabels[priceLevel] || 'Selected stay';
 }
 
 export function compareHotelsBySort(left, right, sortValue) {

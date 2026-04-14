@@ -1,6 +1,7 @@
 import { HiOutlineStar } from 'react-icons/hi2';
 import { LuMapPin, LuSparkles } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
+import { getPriceLevelLabel } from '../../data/hotelSeedUtils';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
@@ -45,7 +46,7 @@ function HotelCard({ hotel }) {
             <HiOutlineStar /> {hotel.starRating}-star hotel
           </span>
           <span className={styles.metaItem}>
-            <LuSparkles /> {hotel.priceLevel} price level
+            <LuSparkles /> {getPriceLevelLabel(hotel.priceLevel)}
           </span>
         </div>
 
