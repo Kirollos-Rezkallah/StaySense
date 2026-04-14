@@ -1,113 +1,22 @@
-export const hotels = [
-  {
-    id: 'aurora-harbor',
-    name: 'Aurora Harbor Hotel',
-    city: 'Stockholm',
-    country: 'Sweden',
-    price: 265,
-    rating: 9.3,
-    reviewCount: 428,
-    summary: 'Waterside rooms, silent blackout design, and a warm Nordic lounge that feels calm from check-in onward.',
-    description:
-      'Aurora Harbor brings together quiet design, thoughtful service, and a location that works equally well for business arrivals and long weekend city breaks.',
-    highlight: 'Best for travelers who want calm design and walkable city access.',
-    distance: '7 min to Gamla Stan',
-    roomType: 'Deluxe Harbor Room',
-    tags: ['Waterfront', 'Business-ready', 'Boutique'],
-    perks: ['Late breakfast', 'Sauna access', 'Fast airport transfer'],
-    score: 'Exceptional fit for short city stays',
-  },
-  {
-    id: 'atelier-verde',
-    name: 'Atelier Verde',
-    city: 'Lisbon',
-    country: 'Portugal',
-    price: 210,
-    rating: 9.1,
-    reviewCount: 312,
-    summary: 'A hillside design hotel with airy suites, rooftop views, and one of the most balanced price-to-experience profiles.',
-    description:
-      'Atelier Verde is a polished urban stay with generous common areas, easy neighborhood access, and a softer luxury feel that never feels formal.',
-    highlight: 'Strong choice for creative travelers and longer city weekends.',
-    distance: '12 min to Chiado',
-    roomType: 'Junior Terrace Suite',
-    tags: ['Rooftop', 'Design hotel', 'Neighborhood pick'],
-    perks: ['Sunset terrace', 'Coworking lounge', 'Wellness studio'],
-    score: 'Excellent value for premium positioning',
-  },
-  {
-    id: 'sora-kyoto-house',
-    name: 'Sora Kyoto House',
-    city: 'Kyoto',
-    country: 'Japan',
-    price: 320,
-    rating: 9.5,
-    reviewCount: 261,
-    summary: 'Minimal suites, serene courtyard rituals, and service details tuned for a restorative stay.',
-    description:
-      'Sora Kyoto House blends local craftsmanship with a highly refined guest flow, making it ideal for travelers who prioritize atmosphere over volume.',
-    highlight: 'A premium retreat for calm, service, and memorable detail.',
-    distance: '10 min to Gion',
-    roomType: 'Garden Suite',
-    tags: ['Wellness', 'Quiet luxury', 'Courtyard'],
-    perks: ['Tea service', 'Private bath slots', 'Concierge planning'],
-    score: 'Top-tier experience for high-intent travelers',
-  },
-  {
-    id: 'meridian-loop',
-    name: 'Meridian Loop',
-    city: 'Singapore',
-    country: 'Singapore',
-    price: 295,
-    rating: 8.9,
-    reviewCount: 511,
-    summary: 'Fast-moving, highly polished, and built around smooth arrivals for travelers with packed schedules.',
-    description:
-      'Meridian Loop sits at the intersection of comfort and speed, pairing strong room tech with a polished arrival experience close to business districts.',
-    highlight: 'Best for productive stays with polished essentials.',
-    distance: '9 min to Marina Bay',
-    roomType: 'Executive Skyline King',
-    tags: ['Business', 'Smart room', 'City view'],
-    perks: ['Express check-in', 'Club lounge', 'Evening transfers'],
-    score: 'Efficient premium option with strong reliability',
-  },
-  {
-    id: 'cobalt-dunes',
-    name: 'Cobalt Dunes Resort',
-    city: 'Dubai',
-    country: 'UAE',
-    price: 380,
-    rating: 9.0,
-    reviewCount: 394,
-    summary: 'Resort-style comfort with a sleek modern look, expansive pool deck, and surprisingly strong dining program.',
-    description:
-      'Cobalt Dunes delivers a resort rhythm without sacrificing city access, making it easy to shift between downtime and a packed itinerary.',
-    highlight: 'A smart balance of leisure atmosphere and urban access.',
-    distance: '15 min to Downtown',
-    roomType: 'Panorama Suite',
-    tags: ['Resort', 'Pools', 'Dining'],
-    perks: ['Beach club shuttle', 'Spa circuit', 'Chef tasting menu'],
-    score: 'Strong all-around option for premium leisure',
-  },
-  {
-    id: 'oakline-house',
-    name: 'Oakline House',
-    city: 'Copenhagen',
-    country: 'Denmark',
-    price: 235,
-    rating: 9.2,
-    reviewCount: 287,
-    summary: 'Warm materials, excellent sleep quality, and a neighborhood feel that still lands near major city anchors.',
-    description:
-      'Oakline House leans residential in the best way, pairing understated design with excellent sleep quality and thoughtful local recommendations.',
-    highlight: 'Ideal for travelers who want comfort without obvious luxury cues.',
-    distance: '11 min to Nyhavn',
-    roomType: 'Corner Studio',
-    tags: ['Local feel', 'Sleep-first', 'Curated'],
-    perks: ['Bike rentals', 'Morning bakery delivery', 'Quiet floor options'],
-    score: 'High comfort score with standout sleep quality',
-  },
-];
+import { hotelCatalogA } from './hotelCatalogA';
+import { hotelCatalogB } from './hotelCatalogB';
+import { hotelCatalogC } from './hotelCatalogC';
+import {
+  buildHotel,
+  compareHotelsBySort,
+  featureOptions,
+  getPriceLevelRank,
+  priceFilters,
+  sortOptions,
+} from './hotelSeedUtils';
+
+export { compareHotelsBySort, featureOptions, getPriceLevelRank, priceFilters, sortOptions };
+
+export const hotels = [...hotelCatalogA, ...hotelCatalogB, ...hotelCatalogC].map(buildHotel);
 
 export const featuredHotels = hotels.slice(0, 3);
-export const cities = [...new Set(hotels.map((hotel) => hotel.city))];
+export const cities = [...new Set(hotels.map((hotel) => hotel.city))].sort();
+
+export function getHotelById(hotelId) {
+  return hotels.find((hotel) => hotel.id === hotelId);
+}
