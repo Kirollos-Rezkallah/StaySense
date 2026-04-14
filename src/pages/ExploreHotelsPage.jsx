@@ -43,7 +43,7 @@ function ExploreHotelsPage() {
               </div>
               <div className={styles.hotelFooter}>
                 <span className={styles.muted}>
-                  {hotel.rating} rating · {hotel.reviewCount} reviews
+                  {hotel.rating} rating - {hotel.reviewCount} reviews
                 </span>
                 <Button to={`/hotels/${hotel.id}`} variant="ghost">
                   Details

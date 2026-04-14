@@ -1,5 +1,5 @@
 .page {
-  padding-block: 2rem 3rem;
+  padding-block: 2.5rem 3.5rem;
 }
 
 .grid {
@@ -15,16 +15,16 @@
 }
 
 .eyebrow {
-  color: var(--color-accent-soft);
-  font-weight: 700;
+  color: var(--color-primary);
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
 }
 
 .panel h1 {
   margin: 0.8rem 0;
-  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-size: clamp(2.45rem, 4vw, 3.55rem);
   letter-spacing: -0.06em;
 }
 
@@ -40,9 +40,9 @@
 }
 
 .listItem {
-  padding: 1rem;
+  padding: 1.1rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--color-surface-muted);
   color: var(--color-text-soft);
 }
 
@@ -73,7 +73,7 @@
 }
 
 .redirect a {
-  color: var(--color-accent-soft);
+  color: var(--color-primary);
   font-weight: 700;
 }
 

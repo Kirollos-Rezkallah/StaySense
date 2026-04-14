@@ -1,6 +1,6 @@
 .section {
   display: grid;
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
 .header {
@@ -9,7 +9,7 @@
 
 .header h2 {
   margin: 0.35rem 0 0.75rem;
-  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  font-size: clamp(1.8rem, 4vw, 2.65rem);
   letter-spacing: -0.04em;
 }
 
@@ -20,9 +20,9 @@
 
 .eyebrow {
   display: inline-flex;
-  color: var(--color-accent-soft);
-  font-weight: 700;
+  color: var(--color-primary);
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
 }

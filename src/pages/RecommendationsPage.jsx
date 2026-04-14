@@ -34,7 +34,7 @@ function RecommendationsPage() {
             </div>
             <div className={styles.hotelFooter}>
               <span className={styles.muted}>
-                {hotel.rating} rating · {hotel.score}
+                {hotel.rating} rating - {hotel.score}
               </span>
               <Button to={`/hotels/${hotel.id}`} variant="ghost">
                 Open details

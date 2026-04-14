@@ -1,14 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-  --color-bg: #07111f;
-  --color-bg-soft: #0d1a2e;
-  --color-surface: rgba(12, 19, 34, 0.82);
-  --color-text: #f4f8ff;
-  --color-text-soft: #9bb0cc;
-  --color-accent: #57d2ff;
-  --color-accent-soft: #9ae8ff;
-  --color-border: rgba(255, 255, 255, 0.08);
+  --color-bg: #f6f4ef;
+  --color-bg-soft: #eef3f6;
+  --color-surface: #ffffff;
+  --color-surface-muted: #faf7f2;
+  --color-text: #1d2735;
+  --color-text-soft: #667386;
+  --color-primary: #2f67d8;
+  --color-primary-strong: #2457bb;
+  --color-primary-soft: #ecf2ff;
+  --color-accent: #6aa89c;
+  --color-accent-soft: #edf7f4;
+  --color-warm: #d7a068;
+  --color-warm-soft: #fbf1e5;
+  --color-border: #e5e8ee;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
   --space-4: 1rem;
@@ -21,10 +27,11 @@
   --radius-lg: 1.35rem;
   --radius-xl: 1.7rem;
   --radius-pill: 999px;
-  --shadow-md: 0 18px 48px rgba(0, 0, 0, 0.24);
-  --shadow-xl: 0 28px 80px rgba(0, 0, 0, 0.36);
+  --shadow-sm: 0 8px 20px rgba(22, 35, 59, 0.05);
+  --shadow-md: 0 18px 40px rgba(22, 35, 59, 0.08);
+  --shadow-xl: 0 28px 70px rgba(22, 35, 59, 0.12);
   --transition-base: 180ms ease;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * {
@@ -41,9 +48,10 @@ body {
   font-family: 'Manrope', sans-serif;
   color: var(--color-text);
   background:
-    radial-gradient(circle at top left, rgba(87, 210, 255, 0.16), transparent 30%),
-    radial-gradient(circle at right center, rgba(53, 85, 173, 0.2), transparent 34%),
-    linear-gradient(180deg, #08111f 0%, #091425 45%, #050b17 100%);
+    radial-gradient(circle at top left, rgba(106, 168, 156, 0.14), transparent 28%),
+    radial-gradient(circle at right top, rgba(47, 103, 216, 0.08), transparent 24%),
+    linear-gradient(180deg, #fcfbf8 0%, #f6f4ef 46%, #f2f5f8 100%);
+  line-height: 1.55;
 }
 
 a {
@@ -63,6 +71,18 @@ img {
   display: block;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  color: var(--color-text);
+  line-height: 1.08;
+}
+
+p {
+  line-height: 1.65;
+}
+
 #root {
   min-height: 100vh;
 }
@@ -73,5 +93,5 @@ img {
 }
 
 ::selection {
-  background: rgba(87, 210, 255, 0.28);
+  background: rgba(47, 103, 216, 0.16);
 }

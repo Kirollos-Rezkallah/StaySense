@@ -1,7 +1,7 @@
 .page {
   display: grid;
-  gap: 1.5rem;
-  padding-bottom: 1rem;
+  gap: 1.75rem;
+  padding-bottom: 1.5rem;
 }
 
 .heroCard,
@@ -11,12 +11,15 @@
 .detailCard,
 .assistantCard,
 .profileCard {
-  padding: 1.5rem;
+  padding: 1.6rem;
 }
 
 .heroCard {
   display: grid;
   gap: 1rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(249, 246, 241, 0.95)),
+    var(--color-surface);
 }
 
 .heroTop,
@@ -32,7 +35,7 @@
 .heroTitle {
   max-width: 18ch;
   margin: 0.35rem 0 0.4rem;
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(2.1rem, 4vw, 3.3rem);
   letter-spacing: -0.06em;
 }
 
@@ -49,7 +52,7 @@
 .gridThree,
 .gridSidebar {
   display: grid;
-  gap: 1.25rem;
+  gap: 1.35rem;
 }
 
 .gridTwo {
@@ -76,7 +79,7 @@
 .detailCard h3,
 .assistantCard h3 {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.22rem;
   letter-spacing: -0.04em;
 }
 
@@ -98,13 +101,13 @@
 .statGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1.15rem;
 }
 
 .statItem {
-  padding: 1rem;
+  padding: 1.15rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--color-surface-muted);
 }
 
 .statItem strong {
@@ -134,7 +137,7 @@
   gap: 1rem;
   margin-top: 1.1rem;
   padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid var(--color-border);
 }
 
 .list {
@@ -152,12 +155,12 @@
 .conversationItem {
   padding: 1rem;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.04);
+  background: var(--color-surface-muted);
 }
 
 .conversationMeta {
   margin-bottom: 0.35rem;
-  color: var(--color-accent-soft);
+  color: var(--color-primary);
   font-weight: 700;
   font-size: 0.82rem;
   text-transform: uppercase;
@@ -172,7 +175,7 @@
 
 .divider {
   height: 1px;
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--color-border);
 }
 
 @media (max-width: 1080px) {
