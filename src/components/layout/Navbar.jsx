@@ -80,9 +80,11 @@ function Navbar() {
     <header className={styles.header}>
       <div className={`container ${styles.navbar}`}>
         <Link to="/" className={styles.brand}>
-          <span className={styles.brandIcon}>
-            <HiOutlineSparkles />
-          </span>
+          <img
+            className={styles.brandLogo}
+            src="/staysense-logo.png"
+            alt="StaySense"
+          />
           <span>
             StaySense
             <small>Find the stay that fits</small>
