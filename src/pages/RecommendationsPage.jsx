@@ -2,12 +2,14 @@ import { Link } from 'react-router-dom';
 import { getPriceLevelLabel } from '../data/hotelSeedUtils';
 import { getHotelById, hotels } from '../data/hotels';
 import usePreferences from '../hooks/usePreferences';
+import { getHotelImageSources } from '../utils/hotelImages';
 import {
   getPreferenceLabel,
   getDefaultPreferences,
   isPreferenceProfileActive,
   rankHotelsByPreferences,
 } from '../utils/preferences';
+import HotelImage from '../components/hotels/HotelImage';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -87,7 +89,11 @@ function RecommendationsPage() {
                 aria-label={`Open ${hotel.name}`}
               >
                 <div className={styles.recommendationImageWrap}>
-                  <img className={styles.recommendationImage} src={hotel.image} alt={hotel.name} />
+                  <HotelImage
+                    className={styles.recommendationImage}
+                    sources={getHotelImageSources(hotel)}
+                    alt={hotel.name}
+                  />
                   <div className={styles.recommendationImageOverlay}>View details</div>
                   <div className={styles.recommendationImageMeta}>
                     <Badge tone={index === 0 ? 'accent' : 'default'}>Rank #{index + 1}</Badge>

@@ -17,7 +17,7 @@ export const hotelCatalogE = [
     description:
       'Aster Tokyo Station Hotel is built for smooth arrivals, strong sleep, and efficient city access without losing a calm, premium feel.',
     tags: ['Station access', 'Business stay', 'High-comfort'],
-    image: hotelImage('photo-1455587734955-081b22074882'),
+    image: hotelImage('photo-1511818966892-d7d671e672a2'),
     gallery: hotelGallery(
       'photo-1455587734955-081b22074882',
       'photo-1522798514-97ceb8c4f1c8',
@@ -48,7 +48,7 @@ export const hotelCatalogE = [
     description:
       'Sumida Garden Hotel offers comfortable rooms and a calmer setting that still keeps classic Tokyo experiences close at hand.',
     tags: ['River view', 'Cultural base', 'Family trip'],
-    image: hotelImage('photo-1551882547-ff40c63fe5fa'),
+    image: hotelImage('photo-1529290130-4ca3753253ae'),
     gallery: hotelGallery(
       'photo-1551882547-ff40c63fe5fa',
       'photo-1445019980597-93fa8acb246c',
@@ -79,7 +79,7 @@ export const hotelCatalogE = [
     description:
       'Chao Phraya Social Club mixes a riverside energy with comfortable rooms and a polished common-space experience.',
     tags: ['Riverside', 'Lifestyle stay', 'Skyline views'],
-    image: hotelImage('photo-1521783988139-89397d761dce'),
+    image: hotelImage('photo-1479839672679-a46483c0e7c8'),
     gallery: hotelGallery(
       'photo-1521783988139-89397d761dce',
       'photo-1506744038136-46273834b3fb',
@@ -110,7 +110,7 @@ export const hotelCatalogE = [
     description:
       'Sukhumvit Courtyard is a practical, modern stay for travelers who want Bangkok access, reliable rooms, and straightforward value.',
     tags: ['Transit-friendly', 'Budget city stay', 'Practical choice'],
-    image: hotelImage('photo-1496417263034-38ec4f0b665a'),
+    image: hotelImage('photo-1502005229762-cf1b2da7c5d6'),
     gallery: hotelGallery(
       'photo-1496417263034-38ec4f0b665a',
       'photo-1505692952047-1a78307da8f2',
@@ -141,7 +141,7 @@ export const hotelCatalogE = [
     description:
       'Pacific Atelier brings together strong room design, a polished pool deck, and a city-stay energy that feels distinctly Los Angeles.',
     tags: ['Design hotel', 'West Hollywood', 'Premium city stay'],
-    image: hotelImage('photo-1512918728675-ed5a9ecdebfd'),
+    image: hotelImage('photo-1513694203232-719a280e022f'),
     gallery: hotelGallery(
       'photo-1512918728675-ed5a9ecdebfd',
       'photo-1522798514-97ceb8c4f1c8',
@@ -172,7 +172,7 @@ export const hotelCatalogE = [
     description:
       'Santa Monica Bluff House favors light-filled rooms, ocean access, and a calmer coastal rhythm than many central LA stays.',
     tags: ['Coastal stay', 'Family trip', 'Ocean view'],
-    image: hotelImage('photo-1506744038136-46273834b3fb'),
+    image: hotelImage('photo-1564501049412-61c2a3083791'),
     gallery: hotelGallery(
       'photo-1506744038136-46273834b3fb',
       'photo-1540541338287-41700207dee6',
@@ -203,7 +203,7 @@ export const hotelCatalogE = [
     description:
       'Bayfront Meridian offers a smooth Miami city stay with sleek rooms, dependable service, and enough amenities for both work and leisure.',
     tags: ['Brickell', 'City break', 'Business-leisure'],
-    image: hotelImage('photo-1500530855697-b586d89ba3ee'),
+    image: hotelImage('photo-1507149833265-60c372daea22'),
     gallery: hotelGallery(
       'photo-1500530855697-b586d89ba3ee',
       'photo-1521783988139-89397d761dce',
@@ -234,7 +234,7 @@ export const hotelCatalogE = [
     description:
       'Little Havana House brings together a local-feeling neighborhood base with modern rooms and easier pricing than many Miami waterfront stays.',
     tags: ['Neighborhood hotel', 'Value stay', 'Culture-led trip'],
-    image: hotelImage('photo-1542314831-068cd1dbfeeb'),
+    image: hotelImage('photo-1502672023488-70e25813eb80'),
     gallery: hotelGallery(
       'photo-1542314831-068cd1dbfeeb',
       'photo-1496417263034-38ec4f0b665a',

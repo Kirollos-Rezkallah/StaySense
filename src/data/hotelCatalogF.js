@@ -17,7 +17,7 @@ export const hotelCatalogF = [
     description:
       'Galata Terrace Hotel pairs rooftop city views with calm, modern rooms in a part of Istanbul that feels rich in atmosphere day and night.',
     tags: ['Rooftop', 'Historic city break', 'View stay'],
-    image: hotelImage('photo-1522798514-97ceb8c4f1c8'),
+    image: hotelImage('photo-1560448204-e02f11c3d0e2'),
     gallery: hotelGallery(
       'photo-1522798514-97ceb8c4f1c8',
       'photo-1566073771259-6a8506099945',
@@ -48,7 +48,7 @@ export const hotelCatalogF = [
     description:
       'Bosphorus Passage House is a practical waterfront-edge stay with useful transport links and a polished but unfussy feel.',
     tags: ['Ferry access', 'City value', 'Harbor edge'],
-    image: hotelImage('photo-1500530855697-b586d89ba3ee'),
+    image: hotelImage('photo-1494526585095-c41746248156'),
     gallery: hotelGallery(
       'photo-1500530855697-b586d89ba3ee',
       'photo-1496417263034-38ec4f0b665a',
@@ -79,7 +79,7 @@ export const hotelCatalogF = [
     description:
       'Emerald Rice Terraces centers the stay around greenery, quiet mornings, and generous room layouts that encourage a slower pace.',
     tags: ['Ubud edge', 'Wellness', 'Scenic retreat'],
-    image: hotelImage('photo-1506744038136-46273834b3fb'),
+    image: hotelImage('photo-1484154218962-a197022b5858'),
     gallery: hotelGallery(
       'photo-1506744038136-46273834b3fb',
       'photo-1540541338287-41700207dee6',
@@ -141,7 +141,7 @@ export const hotelCatalogF = [
     description:
       'Barri Gotic House offers a more grounded city stay with practical rooms and a location that keeps Barcelonas historic core close.',
     tags: ['Historic district', 'Value city break', 'Walkable stay'],
-    image: hotelImage('photo-1445019980597-93fa8acb246c'),
+    image: hotelImage('photo-1460317442991-0ec209397118'),
     gallery: hotelGallery(
       'photo-1445019980597-93fa8acb246c',
       'photo-1542314831-068cd1dbfeeb',
@@ -172,7 +172,7 @@ export const hotelCatalogF = [
     description:
       'Desert Line Hotel is a dependable Dubai base that favors smart pricing, clean design, and useful transport connections.',
     tags: ['Transit-friendly', 'Value premium', 'Practical stay'],
-    image: hotelImage('photo-1496417263034-38ec4f0b665a'),
+    image: hotelImage('photo-1535827841776-24afc1e255ac'),
     gallery: hotelGallery(
       'photo-1496417263034-38ec4f0b665a',
       'photo-1505692952047-1a78307da8f2',
@@ -203,7 +203,7 @@ export const hotelCatalogF = [
     description:
       'Chelsea Yard Hotel combines a downtown creative feel with rooms that stay calm and comfortable after busy city days.',
     tags: ['Chelsea', 'Creative district', 'Modern city stay'],
-    image: hotelImage('photo-1522798514-97ceb8c4f1c8'),
+    image: hotelImage('photo-1499793983690-e29da59ef1c2'),
     gallery: hotelGallery(
       'photo-1522798514-97ceb8c4f1c8',
       'photo-1505693416388-ac5ce068fe85',
@@ -234,7 +234,7 @@ export const hotelCatalogF = [
     description:
       'Constantia Garden Retreat offers broad rooms, lush grounds, and a quieter Cape Town base that still keeps key districts reachable.',
     tags: ['Garden stay', 'Scenic retreat', 'Longer stay'],
-    image: hotelImage('photo-1506744038136-46273834b3fb'),
+    image: hotelImage('photo-1501183638710-841dd1904471'),
     gallery: hotelGallery(
       'photo-1506744038136-46273834b3fb',
       'photo-1540541338287-41700207dee6',

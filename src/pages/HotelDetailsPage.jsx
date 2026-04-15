@@ -4,6 +4,7 @@ import { LuCalendarRange, LuMapPin, LuShieldCheck, LuUsers } from 'react-icons/l
 import { useNavigate, useParams } from 'react-router-dom';
 import { getPriceLevelLabel } from '../data/hotelSeedUtils';
 import { getHotelById } from '../data/hotels';
+import HotelImage from '../components/hotels/HotelImage';
 import ReviewCard from '../components/reviews/ReviewCard';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
@@ -11,6 +12,7 @@ import Card from '../components/ui/Card';
 import InputField from '../components/ui/InputField';
 import useBooking from '../hooks/useBooking';
 import useReviews from '../hooks/useReviews';
+import { getHotelImageSources } from '../utils/hotelImages';
 import {
   bookingGuestOptions,
   calculateBookingPricing,
@@ -142,7 +144,11 @@ function HotelDetailsPage() {
         <div className={styles.hero}>
           <Card className={styles.galleryCard} elevated>
             <button type="button" className={styles.imageButton} onClick={() => openGallery(0)}>
-              <img className={styles.heroImage} src={hotel.gallery[0]} alt={hotel.name} />
+              <HotelImage
+                className={styles.heroImage}
+                sources={getHotelImageSources(hotel)}
+                alt={hotel.name}
+              />
               <span className={styles.imageHint}>Open gallery</span>
             </button>
             <div className={styles.thumbGrid}>
@@ -153,7 +159,11 @@ function HotelDetailsPage() {
                   className={styles.thumbButton}
                   onClick={() => openGallery(index + 1)}
                 >
-                  <img className={styles.thumb} src={imageUrl} alt={`${hotel.name} gallery`} />
+                  <HotelImage
+                    className={styles.thumb}
+                    sources={[imageUrl, hotel.image, ...hotel.gallery]}
+                    alt={`${hotel.name} gallery`}
+                  />
                 </button>
               ))}
             </div>
@@ -436,9 +446,9 @@ function HotelDetailsPage() {
               <HiChevronLeft />
             </button>
 
-            <img
+            <HotelImage
               className={styles.modalImage}
-              src={hotel.gallery[activeImageIndex]}
+              sources={[hotel.gallery[activeImageIndex], hotel.image, ...hotel.gallery]}
               alt={`${hotel.name} large gallery view`}
             />
 

@@ -43,7 +43,7 @@ export const hotelCatalogC = [
     features: ['Pool', 'Breakfast', 'Scenic view', 'Budget-friendly', 'Family-friendly', 'Quiet rooms'],
     description: 'Montjuic Terrace Hotel is a relaxed city stay with a seasonal rooftop pool and a quieter position than many central Barcelona hotels.',
     tags: ['Hilltop view', 'Relaxed pace', 'Value stay'],
-    image: hotelImage('photo-1506744038136-46273834b3fb'),
+    image: hotelImage('photo-1459535653751-d571815e906b'),
     gallery: hotelGallery(
       'photo-1506744038136-46273834b3fb',
       'photo-1496417263034-38ec4f0b665a',
@@ -71,7 +71,7 @@ export const hotelCatalogC = [
     features: ['Gym', 'Breakfast', 'Luxury', 'Business', 'Modern interior', 'Central location', 'Bar'],
     description: 'Hudson Atelier balances downtown style with genuinely comfortable rooms, giving travelers a refined New York base that still feels warm rather than showy.',
     tags: ['Downtown', 'Creative district', 'Luxury city stay'],
-    image: hotelImage('photo-1521783988139-89397d761dce'),
+    image: hotelImage('photo-1502672260266-1c1ef2d93688'),
     gallery: hotelGallery(
       'photo-1521783988139-89397d761dce',
       'photo-1505693416388-ac5ce068fe85',
@@ -155,7 +155,7 @@ export const hotelCatalogC = [
     features: ['Breakfast', 'Gym', 'Central location', 'Modern interior', 'Business', 'Scenic view'],
     description: 'Harbor Loft Hotel offers a straightforward modern stay with broad harbor access and a location that makes first-time Cape Town trips feel easy.',
     tags: ['Waterfront', 'Good value', 'City access'],
-    image: hotelImage('photo-1500530855697-b586d89ba3ee'),
+    image: hotelImage('photo-1507089947368-19c1da9775ae'),
     gallery: hotelGallery(
       'photo-1500530855697-b586d89ba3ee',
       'photo-1505692952047-1a78307da8f2',

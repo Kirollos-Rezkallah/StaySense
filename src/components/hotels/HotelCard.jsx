@@ -2,9 +2,11 @@ import { HiOutlineStar } from 'react-icons/hi2';
 import { LuMapPin, LuSparkles } from 'react-icons/lu';
 import { Link } from 'react-router-dom';
 import { getPriceLevelLabel } from '../../data/hotelSeedUtils';
+import { getHotelImageSources } from '../../utils/hotelImages';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
+import HotelImage from './HotelImage';
 import styles from './HotelCard.module.css';
 
 function HotelCard({ hotel }) {
@@ -12,7 +14,7 @@ function HotelCard({ hotel }) {
     <Card className={styles.card}>
       <Link className={styles.imageLink} to={`/hotels/${hotel.id}`} aria-label={`Open ${hotel.name}`}>
         <div className={styles.imageWrap}>
-          <img className={styles.image} src={hotel.image} alt={hotel.name} />
+          <HotelImage className={styles.image} sources={getHotelImageSources(hotel)} alt={hotel.name} />
           <div className={styles.imageOverlay}>View details</div>
           <div className={styles.imageMeta}>
             <Badge tone="accent">

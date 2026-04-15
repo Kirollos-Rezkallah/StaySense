@@ -17,7 +17,7 @@ export const hotelCatalogD = [
     description:
       'Rive Gauche Pavilion pairs polished service with calm rooms and a classic Paris setting that feels refined without becoming formal.',
     tags: ['Left Bank', 'Boutique luxury', 'Romantic stay'],
-    image: hotelImage('photo-1505693416388-ac5ce068fe85'),
+    image: hotelImage('photo-1566073771259-6a8506099945'),
     gallery: hotelGallery(
       'photo-1505693416388-ac5ce068fe85',
       'photo-1522708323590-d24dbb6b0267',
@@ -48,7 +48,7 @@ export const hotelCatalogD = [
     description:
       'Atelier Montmartre House offers well-planned rooms, a softer neighborhood pace, and value that feels especially strong for Paris.',
     tags: ['Neighborhood stay', 'Value pick', 'Residential feel'],
-    image: hotelImage('photo-1496417263034-38ec4f0b665a'),
+    image: hotelImage('photo-1444201983204-c43cbd584d93'),
     gallery: hotelGallery(
       'photo-1496417263034-38ec4f0b665a',
       'photo-1445019980597-93fa8acb246c',
@@ -79,7 +79,7 @@ export const hotelCatalogD = [
     description:
       'Piazza Luce Hotel delivers a polished central Rome experience with quiet rooms and a pace that still feels relaxed after dark.',
     tags: ['Historic center', 'Classic city stay', 'Walkable'],
-    image: hotelImage('photo-1566073771259-6a8506099945'),
+    image: hotelImage('photo-1455849318743-b2233052fcff'),
     gallery: hotelGallery(
       'photo-1566073771259-6a8506099945',
       'photo-1522798514-97ceb8c4f1c8',
@@ -110,7 +110,7 @@ export const hotelCatalogD = [
     description:
       'Trastevere Court is a grounded, comfortable stay that prioritizes atmosphere, walkability, and easy evenings over full-service extras.',
     tags: ['Local feel', 'Courtyard', 'Value city break'],
-    image: hotelImage('photo-1542314831-068cd1dbfeeb'),
+    image: hotelImage('photo-1486406146926-c627a92ad1ab'),
     gallery: hotelGallery(
       'photo-1542314831-068cd1dbfeeb',
       'photo-1445019980597-93fa8acb246c',
@@ -141,7 +141,7 @@ export const hotelCatalogD = [
     description:
       'Canal House Nine offers refined rooms, soft lighting, and a calm canal-side atmosphere that makes Amsterdam feel immediately settled.',
     tags: ['Canal stay', 'Design hotel', 'Quiet luxury'],
-    image: hotelImage('photo-1468824357306-a439d58ccb1c'),
+    image: hotelImage('photo-1500530855697-b586d89ba3ee'),
     gallery: hotelGallery(
       'photo-1468824357306-a439d58ccb1c',
       'photo-1522708323590-d24dbb6b0267',
@@ -203,7 +203,7 @@ export const hotelCatalogD = [
     description:
       'Mitte Circle Hotel is a polished all-rounder for Berlin, with efficient rooms and a location that keeps work and leisure equally manageable.',
     tags: ['Business ready', 'Central Berlin', 'Modern stay'],
-    image: hotelImage('photo-1522708323590-d24dbb6b0267'),
+    image: hotelImage('photo-1451976426598-a7593bd6d0b2'),
     gallery: hotelGallery(
       'photo-1522708323590-d24dbb6b0267',
       'photo-1522798514-97ceb8c4f1c8',
