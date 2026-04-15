@@ -1,31 +1,60 @@
 import { useEffect, useState } from 'react';
 import { HiChevronLeft, HiChevronRight, HiOutlineStar, HiOutlineXMark } from 'react-icons/hi2';
-import { LuMapPin, LuShieldCheck } from 'react-icons/lu';
-import { useParams } from 'react-router-dom';
+import { LuCalendarRange, LuMapPin, LuShieldCheck, LuUsers } from 'react-icons/lu';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getPriceLevelLabel } from '../data/hotelSeedUtils';
 import { getHotelById } from '../data/hotels';
 import ReviewCard from '../components/reviews/ReviewCard';
 import Badge from '../components/ui/Badge';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
+import InputField from '../components/ui/InputField';
+import useBooking from '../hooks/useBooking';
 import useReviews from '../hooks/useReviews';
+import {
+  bookingGuestOptions,
+  calculateBookingPricing,
+  formatBookingDate,
+  getDefaultBookingDates,
+  validateBookingSelection,
+} from '../utils/booking';
 import appStyles from './AppPage.module.css';
 import styles from './HotelDetailsPage.module.css';
 
 function HotelDetailsPage() {
   const { hotelId } = useParams();
+  const navigate = useNavigate();
   const hotel = getHotelById(hotelId);
+  const { startBooking } = useBooking();
   const { getHotelReviewAggregate, getReviewsForHotel } = useReviews();
   const [isGalleryOpen, setIsGalleryOpen] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [bookingState, setBookingState] = useState(() => {
+    const defaultDates = getDefaultBookingDates();
+    return {
+      ...defaultDates,
+      guests: '2',
+    };
+  });
+  const [bookingError, setBookingError] = useState('');
 
   const hotelReviews = hotel ? getReviewsForHotel(hotel.id) : [];
   const reviewAggregate = hotel
     ? getHotelReviewAggregate(hotel.id, hotel.reviewScore, hotel.reviewCount)
     : { averageScore: 0, totalCount: 0, localReviewCount: 0 };
+  const bookingValidationMessage = hotel ? validateBookingSelection(bookingState) : '';
+  const bookingPricing =
+    hotel && !bookingValidationMessage
+      ? calculateBookingPricing(
+          hotel.startingPrice,
+          bookingState.checkIn,
+          bookingState.checkOut,
+          Number(bookingState.guests),
+        )
+      : null;
 
   useEffect(() => {
-    if (!isGalleryOpen) {
+    if (!isGalleryOpen || !hotel) {
       return undefined;
     }
 
@@ -53,7 +82,31 @@ function HotelDetailsPage() {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [hotel.gallery.length, isGalleryOpen]);
+  }, [hotel, isGalleryOpen]);
+
+  const handleBookingChange = (event) => {
+    const { name, value } = event.target;
+    setBookingState((current) => ({ ...current, [name]: value }));
+    setBookingError('');
+  };
+
+  const handleReserve = (event) => {
+    event.preventDefault();
+
+    if (bookingValidationMessage) {
+      setBookingError(bookingValidationMessage);
+      return;
+    }
+
+    startBooking({
+      checkIn: bookingState.checkIn,
+      checkOut: bookingState.checkOut,
+      guests: Number(bookingState.guests),
+      hotel,
+    });
+
+    navigate('/checkout');
+  };
 
   const openGallery = (imageIndex) => {
     setActiveImageIndex(imageIndex);
@@ -175,6 +228,112 @@ function HotelDetailsPage() {
                 </span>
               ))}
             </div>
+          </Card>
+
+          <Card className={`${styles.sectionCard} ${styles.bookingCard}`}>
+            <div className={styles.bookingHeader}>
+              <div>
+                <h2>Reserve your stay</h2>
+                <p>
+                  Choose your dates, guest count, and continue to a streamlined checkout for{' '}
+                  {hotel.name}.
+                </p>
+              </div>
+              <Badge tone="accent">From ${hotel.startingPrice} per night</Badge>
+            </div>
+
+            <form className={styles.bookingForm} onSubmit={handleReserve} noValidate>
+              <div className={styles.bookingFieldGrid}>
+                <InputField
+                  id="booking-check-in"
+                  label="Check-in"
+                  name="checkIn"
+                  onChange={handleBookingChange}
+                  type="date"
+                  value={bookingState.checkIn}
+                  description="Select your arrival date."
+                />
+                <InputField
+                  id="booking-check-out"
+                  label="Check-out"
+                  name="checkOut"
+                  onChange={handleBookingChange}
+                  type="date"
+                  value={bookingState.checkOut}
+                  description="Choose when you plan to leave."
+                />
+                <InputField
+                  as="select"
+                  id="booking-guests"
+                  label="Guests"
+                  name="guests"
+                  onChange={handleBookingChange}
+                  value={bookingState.guests}
+                  description="Rooms are assigned at checkout."
+                >
+                  {bookingGuestOptions.map((guestCount) => (
+                    <option key={guestCount} value={guestCount}>
+                      {guestCount} guest{guestCount > 1 ? 's' : ''}
+                    </option>
+                  ))}
+                </InputField>
+              </div>
+
+              <div className={styles.bookingSnapshot}>
+                <div className={styles.snapshotItem}>
+                  <LuCalendarRange />
+                  <div>
+                    <span>Selected stay</span>
+                    <strong>
+                      {formatBookingDate(bookingState.checkIn)} -{' '}
+                      {formatBookingDate(bookingState.checkOut)}
+                    </strong>
+                  </div>
+                </div>
+                <div className={styles.snapshotItem}>
+                  <LuUsers />
+                  <div>
+                    <span>Guests</span>
+                    <strong>
+                      {bookingState.guests} guest{Number(bookingState.guests) > 1 ? 's' : ''}
+                    </strong>
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.bookingSummary}>
+                <div className={styles.summaryLine}>
+                  <span>Nightly rate</span>
+                  <strong>${hotel.startingPrice}</strong>
+                </div>
+                <div className={styles.summaryLine}>
+                  <span>Nights</span>
+                  <strong>{bookingPricing?.nights || 0}</strong>
+                </div>
+                <div className={styles.summaryLine}>
+                  <span>Service fee</span>
+                  <strong>${bookingPricing?.serviceFee || 0}</strong>
+                </div>
+                <div className={styles.summaryLine}>
+                  <span>City taxes</span>
+                  <strong>${bookingPricing?.cityTax || 0}</strong>
+                </div>
+                <div className={styles.summaryTotal}>
+                  <span>Total</span>
+                  <strong>${bookingPricing?.total || 0}</strong>
+                </div>
+              </div>
+
+              {bookingError ? <p className={appStyles.errorMessage}>{bookingError}</p> : null}
+
+              <div className={styles.ctaRow}>
+                <Button type="submit">Reserve now</Button>
+                <p className={styles.bookingNote}>
+                  You&apos;ll review guest and payment details on the next screen before confirming
+                  the reservation.
+                </p>
+              </div>
+            </form>
           </Card>
 
           <Card className={styles.sectionCard}>

@@ -1,0 +1,199 @@
+.layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 1.35rem;
+  align-items: start;
+}
+
+.summaryCard,
+.checkoutCard,
+.successCard {
+  padding: 1.5rem;
+}
+
+.hotelSummary {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 1.25rem;
+}
+
+.hotelImage {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.hotelSummary h2,
+.sectionHeader h2 {
+  margin: 0.6rem 0 0.45rem;
+  font-size: 1.45rem;
+  letter-spacing: -0.04em;
+}
+
+.hotelSummary p,
+.sectionHeader p,
+.summaryItem span,
+.securityNote,
+.successItem span {
+  margin: 0;
+  color: var(--color-text-soft);
+}
+
+.summaryGrid,
+.inlineGrid,
+.successGrid {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.summaryGrid,
+.successGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.summaryItem,
+.successItem {
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-muted);
+}
+
+.summaryItem strong,
+.successItem strong {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.priceBreakdown {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: 1.35rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.priceBreakdown > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.priceBreakdown span {
+  color: var(--color-text-soft);
+}
+
+.totalRow {
+  padding-top: 0.4rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.totalRow span,
+.totalRow strong {
+  color: var(--color-text);
+  font-size: 1.02rem;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.paymentGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.paymentOption {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1rem 0.8rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    background var(--transition-base);
+}
+
+.paymentOption svg {
+  font-size: 1.4rem;
+}
+
+.paymentOptionActive {
+  border-color: rgba(47, 103, 216, 0.28);
+  background: var(--color-primary-soft);
+  box-shadow: var(--shadow-sm);
+}
+
+.inlineGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.checkoutFooter {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.securityNote,
+.successItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.securityNote svg,
+.successItem svg,
+.successIcon {
+  color: var(--color-primary);
+}
+
+.successCard {
+  display: grid;
+  gap: 1rem;
+  text-align: left;
+}
+
+.successIcon {
+  width: 4rem;
+  height: 4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.2rem;
+  background: var(--color-primary-soft);
+  font-size: 2rem;
+}
+
+@media (max-width: 1080px) {
+  .layout,
+  .summaryGrid,
+  .paymentGrid,
+  .successGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .hotelSummary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .inlineGrid {
+    grid-template-columns: 1fr;
+  }
+}

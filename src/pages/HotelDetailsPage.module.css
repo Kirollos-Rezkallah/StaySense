@@ -86,6 +86,11 @@
   gap: 1rem;
 }
 
+.bookingCard {
+  display: grid;
+  gap: 1.2rem;
+}
+
 .eyebrow {
   color: var(--color-primary);
   font-weight: 800;
@@ -140,6 +145,110 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+.bookingHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.bookingHeader p {
+  margin-top: 0.45rem;
+}
+
+.bookingForm {
+  display: grid;
+  gap: 1rem;
+}
+
+.bookingFieldGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.95rem;
+}
+
+.bookingSnapshot {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.95rem;
+}
+
+.snapshotItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(247, 250, 255, 0.92), rgba(244, 248, 247, 0.95));
+  border: 1px solid rgba(47, 103, 216, 0.08);
+}
+
+.snapshotItem svg {
+  margin-top: 0.1rem;
+  color: var(--color-primary);
+  flex: none;
+}
+
+.snapshotItem span,
+.bookingNote {
+  color: var(--color-text-soft);
+}
+
+.snapshotItem span {
+  display: block;
+  font-size: 0.88rem;
+}
+
+.snapshotItem strong {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.bookingSummary {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-muted);
+}
+
+.summaryLine,
+.summaryTotal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+}
+
+.summaryLine span {
+  color: var(--color-text-soft);
+}
+
+.summaryLine strong,
+.summaryTotal strong {
+  letter-spacing: -0.03em;
+}
+
+.summaryTotal {
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.summaryTotal span,
+.summaryTotal strong {
+  color: var(--color-text);
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.bookingNote {
+  margin: 0;
+  max-width: 34ch;
+  line-height: 1.55;
 }
 
 .grid {
@@ -337,6 +446,11 @@
     grid-template-columns: 1fr;
   }
 
+  .bookingFieldGrid,
+  .bookingSnapshot {
+    grid-template-columns: 1fr;
+  }
+
   .sectionHeader {
     flex-direction: column;
     align-items: flex-start;
@@ -344,6 +458,10 @@
 }
 
 @media (max-width: 640px) {
+  .bookingHeader {
+    flex-direction: column;
+  }
+
   .imageHint {
     opacity: 1;
     transform: none;

@@ -3,6 +3,7 @@ import ScrollToTop from './ScrollToTop';
 import MainLayout from '../components/layout/MainLayout';
 import ProtectedRoute from '../routes/ProtectedRoute';
 import AIAssistantPage from '../pages/AIAssistantPage';
+import CheckoutPage from '../pages/CheckoutPage';
 import DashboardPage from '../pages/DashboardPage';
 import ExploreHotelsPage from '../pages/ExploreHotelsPage';
 import HotelDetailsPage from '../pages/HotelDetailsPage';
@@ -24,6 +25,14 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/explore" element={<ExploreHotelsPage />} />
           <Route path="/hotels/:hotelId" element={<HotelDetailsPage />} />
+          <Route
+            path="/checkout"
+            element={
+              <ProtectedRoute>
+                <CheckoutPage />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/dashboard"
             element={
