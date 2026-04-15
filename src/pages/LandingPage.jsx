@@ -1,8 +1,11 @@
 import {
   HiArrowRight,
+  HiMinusSmall,
+  HiPlusSmall,
   HiOutlineChartBarSquare,
   HiOutlineShieldCheck,
 } from "react-icons/hi2";
+import { useState } from "react";
 import { LuMapPin } from "react-icons/lu";
 import { featuredHotels } from "../data/hotels";
 import useAuth from "../hooks/useAuth";
@@ -12,8 +15,42 @@ import Card from "../components/ui/Card";
 import Section from "../components/ui/Section";
 import styles from "./LandingPage.module.css";
 
+const faqItems = [
+  {
+    question: "How do recommendations work?",
+    answer:
+      "StaySense looks at your preferred city, budget, and stay style, then highlights hotels that line up best with those signals.",
+  },
+  {
+    question: "Can I book directly in StaySense?",
+    answer:
+      "You can choose dates, review the stay total, and move through checkout in one flow, so comparing and reserving feels seamless.",
+  },
+  {
+    question: "What happens if I need to cancel?",
+    answer:
+      "Eligible upcoming reservations can be cancelled from your profile, where the booking status and refund follow-up are shown clearly.",
+  },
+  {
+    question: "Which payment methods are supported?",
+    answer:
+      "The checkout flow currently supports Visa, Mastercard, МИР, PayPal, and Alipay with a payment selector that adjusts naturally to the method you choose.",
+  },
+  {
+    question: "Is my payment information stored?",
+    answer:
+      "Sensitive payment details are kept only for the active checkout session and are not saved as part of your long-term reservation history.",
+  },
+  {
+    question: "Will my preferences and reservations still be here when I come back?",
+    answer:
+      "Your account, saved reviews, interpreted travel preferences, and safe reservation summaries are kept so it is easy to pick your plans back up later.",
+  },
+];
+
 function LandingPage() {
   const { isAuthenticated } = useAuth();
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
   return (
     <div className={styles.page}>
@@ -152,6 +189,36 @@ function LandingPage() {
                 a travel product than a dashboard.
               </p>
             </Card>
+          </div>
+        </Section>
+
+        <Section
+          eyebrow="Helpful to know"
+          title="A few quick answers before you start planning"
+          description="Short, practical details that make the experience feel easier to trust from the first visit.">
+          <div className={styles.faqList}>
+            {faqItems.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              const ToggleIcon = isOpen ? HiMinusSmall : HiPlusSmall;
+
+              return (
+                <Card key={item.question} className={styles.faqCard}>
+                  <button
+                    type="button"
+                    className={styles.faqButton}
+                    aria-expanded={isOpen}
+                    onClick={() =>
+                      setOpenFaqIndex((currentIndex) =>
+                        currentIndex === index ? -1 : index
+                      )
+                    }>
+                    <span>{item.question}</span>
+                    <ToggleIcon />
+                  </button>
+                  {isOpen ? <p className={styles.faqAnswer}>{item.answer}</p> : null}
+                </Card>
+              );
+            })}
           </div>
         </Section>
       </div>
